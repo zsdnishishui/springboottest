@@ -35,10 +35,66 @@
     </dependencies>
 
     <build>
+        <finalName>
+            ${artifactId}-${version}
+        </finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <!-- docker插件 -->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <executions>
+                    <execution>
+                        <id>build-image</id>     <!--定义一个执行命令的id-->
+                        <phase>package</phase>   <!--绑定mvn的哪个命令-->
+                        <goals>
+                            <goal>build </goal>   <!--要执行的命令 -->
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>image-tag</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>tag</goal>      <!--tag命令，相当于docker的tag命令-->
+                        </goals>
+                        <configuration>
+                            <image>${project.artifactId}:${version}</image>   <!--镜像名-->
+                            <newName>192.168.56.104:5000/${project.artifactId}:${version}</newName>   <!--打的标签名-->
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>package-push</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>push</goal>    <!--相当于docker的push命令-->
+                        </goals>
+                        <configuration>
+                            <imageName>192.168.56.104:5000/${project.artifactId}:${version}</imageName>  <!--要push的镜像名-->
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <imageName>${project.artifactId}:${version}</imageName>
+                    <!--docker文件所在的目录-->
+                    <dockerDirectory>src/main/docker</dockerDirectory>
+                    <dockerHost>http://192.168.56.103:2375</dockerHost>
+                    <buildArgs>
+                        <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+<!--                        <IMAGE_HOST>${dockerfile.repository}</IMAGE_HOST>-->
+                    </buildArgs>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
             </plugin>
         </plugins>
     </build>
