@@ -1,4 +1,4 @@
-package com.zsd.springboottest.listen;
+package com.zsd.springboottest.listener;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;

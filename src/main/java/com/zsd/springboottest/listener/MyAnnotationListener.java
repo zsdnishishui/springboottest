@@ -1,6 +1,5 @@
-package com.zsd.springboottest.listen;
+package com.zsd.springboottest.listener;
 
-import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
