@@ -17,8 +17,8 @@ public class ChatService {
         this.chatMessageFlux = processor.onBackpressureBuffer().publish().autoConnect();
     }
 
-    public Flux<ChatMessage> getChatHistory() {
-        return chatMessageFlux;
+    public Flux<ChatMessage> getChatHistory(String username) {
+        return chatMessageFlux.filter(chatMessage -> chatMessage.getSender().equals(username));
     }
 
     public void sendMessage(ChatMessage message) {
