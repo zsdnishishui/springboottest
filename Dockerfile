@@ -13,5 +13,5 @@ ADD ${JAR_FILE} app.jar
 ENV JAVA_OPTS=""
 
 ENV PARAMS=""
-
+EXPOSE 8080
 CMD java -Djava.security.egd=file:/dev/./urandom -jar $JAVA_OPTS /app.jar $PARAMS
