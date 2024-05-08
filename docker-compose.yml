@@ -3,17 +3,8 @@ services:
   springboottest:
     build:
       context: .
-      dockerfile: Dockerfile
     restart: always
     ports:
       - "8080:8080"
     container_name: springboottest
-    #    hostname: pig-monitor
     image: 192.168.56.104:5000/test_zsd/springboottest:0.0.3-SNAPSHOT
-    networks:
-      - spring_cloud_default
-
-networks:
-  spring_cloud_default:
-    name: spring_cloud_default
-    driver: bridge
