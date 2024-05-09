@@ -1,7 +1,8 @@
 package com.zsd.springboottest.controller;
 
-import com.zsd.springboottest.listener.MyTestEventPubLisher;
+import com.zsd.springboottest.listener.MyTestEvent;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,18 +14,19 @@ public class HelloController {
 
     @Autowired
     private ServiceHello serviceHello;
+    @Autowired
+    private ApplicationEventPublisher applicationEventPublisher;
 
     @GetMapping("/")
     public String hello() {
 
-         return serviceHello.hello();
+        return serviceHello.hello();
     }
 
-    @Autowired
-    private MyTestEventPubLisher publisher;
 
-    @RequestMapping(value = "/test/testPublishEvent1" )
-    public void testPublishEvent(){
-        publisher.pushListener("我来了！");
+
+    @RequestMapping(value = "/test/testPublishEvent1")
+    public void testPublishEvent() {
+        applicationEventPublisher.publishEvent(new MyTestEvent(this, "我来了！"));
     }
 }

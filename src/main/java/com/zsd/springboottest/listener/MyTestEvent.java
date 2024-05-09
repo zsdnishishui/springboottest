@@ -1,25 +1,15 @@
 package com.zsd.springboottest.listener;
 
+import lombok.Data;
 import org.springframework.context.ApplicationEvent;
 
+@Data
 public class MyTestEvent extends ApplicationEvent {
-    /**
-     *
-     */
-    private static final long serialVersionUID = 1L;
 
-    private String msg ;
+    private String msg;
 
-    public MyTestEvent(Object source,String msg) {
+    public MyTestEvent(Object source, String msg) {
         super(source);
-        this.msg = msg;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
         this.msg = msg;
     }
 }
