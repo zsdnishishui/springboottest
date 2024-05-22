@@ -19,7 +19,7 @@
 <p th:text="'Hello, ' + ${name}"></p>
 <script src="/js/echarts.min.js"></script>
 <div class="box"></div>
-
+<img th:src="${imgBase64}" alt=""/>
 <script th:inline="javascript">
     var data1 = [[${data}]];
     // var data1 = [150, 160, 170, 180, 190, 200, 210];
