@@ -13,7 +13,9 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -24,6 +26,8 @@ public class ThymeleafController {
 
     @GetMapping("/demo")
     public String demo(Model model) {
+        List list = Arrays.asList(new int[]{150, 160, 170, 180, 190, 200, 210});
+        model.addAttribute("data", list);
         model.addAttribute("name", "在看");
         return "demo2";
     }
@@ -33,7 +37,9 @@ public class ThymeleafController {
     public Map demoStr() {
         Map res = new HashMap();
         Context context = new Context();
+        List list = Arrays.asList(new int[]{150, 160, 170, 180, 190, 200, 210});
         context.setVariable("name", "炸死你个");
+        context.setVariable("data", list);
         String template = templateEngine.process("demo2.html", context);
 
         res.put("str", template);
@@ -44,7 +50,9 @@ public class ThymeleafController {
     @ResponseBody
     public void createPdf() throws IOException, TemplateException, DocumentException, com.lowagie.text.DocumentException {
         Context context = new Context();
+        List list = Arrays.asList(new int[]{150, 160, 170, 180, 190, 200, 210});
         context.setVariable("name", "炸死你个");
+        context.setVariable("data", list);
         String template = templateEngine.process("demo2.html", context);
         Html2Pdf.createPdf(template, "d://test2.pdf");
     }

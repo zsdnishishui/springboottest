@@ -6,10 +6,45 @@
         body {
             font-family: FangSong;
         }
+
+        .box {
+            width: 600px;
+            height: 400px;
+            background-color: pink;
+        }
     </style>
 </head>
 <body>
 <!--/*@thymesVar id="name" type="java.lang.String"*/-->
 <p th:text="'Hello, ' + ${name}"></p>
+<script src="/js/echarts.min.js"></script>
+<div class="box"></div>
+
+<script th:inline="javascript">
+    var data1 = [[${data}]];
+    // var data1 = [150, 160, 170, 180, 190, 200, 210];
+
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.querySelector(".box"));
+
+    // 指定图表的配置项和数据
+    var option = {
+        xAxis: {
+            type: 'category',
+            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [{
+            data: data1[0],//data1[0]的原因见下文
+            //data: data2,
+            type: 'line'
+        }]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
 </body>
 </html>
