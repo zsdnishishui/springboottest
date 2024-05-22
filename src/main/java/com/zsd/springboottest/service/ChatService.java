@@ -2,13 +2,11 @@ package com.zsd.springboottest.service;
 
 import com.zsd.springboottest.entity.ChatMessage;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.DirectProcessor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.FluxSink;
 
 @Service
-@Transactional
 public class ChatService {
     private final FluxSink<ChatMessage> chatMessageSink;
     private final Flux<ChatMessage> chatMessageFlux;
