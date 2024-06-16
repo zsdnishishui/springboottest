@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class SessionListener implements HttpSessionListener {
     @PostConstruct
     public void starter(){
-        System.out.println("依赖注入完成之后执行");
+        System.out.println("SessionListener依赖注入完成之后执行");
     }
     @Override
     public void sessionCreated(HttpSessionEvent se) {

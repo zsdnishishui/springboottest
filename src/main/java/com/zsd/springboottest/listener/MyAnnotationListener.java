@@ -14,7 +14,7 @@ public class MyAnnotationListener {
 
     @PostConstruct
     public void starter(){
-        System.out.println("依赖注入完成之后执行");
+        System.out.println("MyAnnotationListener依赖注入完成之后执行");
     }
     @EventListener
     public void listener1(MyTestEvent event) {
