@@ -1,12 +1,16 @@
 package com.zsd.springboottest.listener;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 import org.springframework.stereotype.Component;
 
 @Component
 public class SessionListener implements HttpSessionListener {
-
+    @PostConstruct
+    public void starter(){
+        System.out.println("依赖注入完成之后执行");
+    }
     @Override
     public void sessionCreated(HttpSessionEvent se) {
         // Session创建时的逻辑
