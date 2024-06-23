@@ -27,6 +27,8 @@ public class HelloController {
 
     @RequestMapping(value = "/test/testPublishEvent1")
     public void testPublishEvent() {
+        // 默认是同步调用
+        // 如果改成异步参考：https://blog.csdn.net/yubaojin/article/details/115569767
         applicationEventPublisher.publishEvent(new MyTestEvent(this, "我来了！"));
     }
 }
