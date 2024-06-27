@@ -1,8 +1,5 @@
-
 server:
-  port: 8080
-#  servlet:
-#    context-path: /helloworld
+  port: 8090
 #app:
 #  rpc:
 #    secrete: 1222
