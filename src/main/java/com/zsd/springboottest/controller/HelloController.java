@@ -1,5 +1,6 @@
 package com.zsd.springboottest.controller;
 
+import com.zsd.springboottest.entity.User;
 import com.zsd.springboottest.listener.MyTestEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
@@ -22,6 +23,18 @@ public class HelloController {
         return serviceHello.hello();
     }
 
+    /**
+     * 接收textarea中的换行符
+     * @param user
+     * @return
+     */
+    @PostMapping("/hello")
+    public String getHello(User user) {
+        String str = user.getMessage();
+        String[] i = str.split("\r\n");
+        System.out.println(str);
+        return str;
+    }
 
     @RequestMapping(value = "/test/testPublishEvent1", method = {RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.GET, RequestMethod.POST})
     public void testPublishEvent() {
