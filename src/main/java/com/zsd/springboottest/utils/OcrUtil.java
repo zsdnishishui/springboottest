@@ -14,7 +14,7 @@ import java.io.IOException;
  * instance.setDatapath("the absolute path of tessdata");
  * 对应的动态连接库下载地址：
  * Downloads are available here https://github.com/ollydev/libtesseract/releases
- *
+ * <p>
  * orc 离线识别
  **/
 public class OcrUtil {
@@ -32,7 +32,7 @@ public class OcrUtil {
         instance.setLanguage("chi_sim");
 
         // 指定识别图片
-        File imgDir = new File("D:/1.png");
+        File imgDir = new File("D:/2.png");
         if (imgDir.exists()) {
             long startTime = System.currentTimeMillis();
             BufferedImage bufferedImage = ImageIO.read(imgDir);
